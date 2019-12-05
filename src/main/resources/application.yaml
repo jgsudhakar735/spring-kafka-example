@@ -1,0 +1,51 @@
+# Application Port
+server:
+  port: 8585
+  servlet:
+    context-path: /spring-boot-kafka
+
+# Log Level
+logging:
+  level:
+    web: DEBUG
+    sql: INFO
+    org:
+      hibernate:
+        type: trace  
+# Using Spring Profile , Based on the flag this will pick up the data source and execute the queries if any
+spring:
+# Disable Dev Tools by setting the value as false
+  devtools:
+    add-properties: false
+  profiles:
+    active:
+    - dev
+  main:
+    banner-mode: console           
+---  
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092  
+    template:
+      default-topic: myTopic-kafkasender
+    consumer:
+      group-id: myTopic-group-id
+#Spring Data Source Configuration & Flyway Configuration
+  profiles: dev
+  datasource:
+    initialization-mode: always 
+    username: root
+    password: tagit
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kafka?userSSL=false
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
