@@ -9,7 +9,7 @@ We are done with the required Java code. Now lets start Apache Kafka.
 2. If Windows go to the bin directory and type the beow command. Before we start Kafka server make sure zookeeper is running . 
 3. Start the zookeeper using the below command. (ZooKeeper configuration : make sure you update the log directory and groups in config files)
 
-<h2Start ZooKeeper Server:<h2>
+<h2Start ZooKeeper Server:</h2>
 D:kafka_home_dir\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
   
  <h2> Start Kafka Server </h2>
